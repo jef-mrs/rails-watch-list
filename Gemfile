@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Frontend
 gem 'autoprefixer-rails', '10.2.5'
-gem 'font-awesome-sass', '~> 5.12.0'
+gem 'font-awesome-sass', '~> 6.1.1'
 gem 'simple_form', github: 'heartcombo/simple_form'
 
 # Reduces boot times through caching; required in config/boot.rb

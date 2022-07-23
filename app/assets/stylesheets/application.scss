@@ -10,3 +10,16 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+@import 'select2/dist/css/select2';
+
+a {
+  color: white;
+  text-decoration: none
+}
+
+
+a:hover {
+  color: white;
+  text-decoration: none
+}

@@ -1,0 +1,38 @@
+<div class="banner mb-5" style=" height: 300px;">
+  <div class="container">
+    <h1 class='text-center'><%= @list.name %></h1>
+  </div>
+</div>
+
+
+
+<div class="cards">
+  <% @list.bookmarks.each do |bookmark| %>
+  <div class="card-trip m-2", style='width: 400px;'>
+    <%= image_tag "#{bookmark.movie.poster_url}",width: 400, height: 200 %>
+    <div class="card-trip-infos p-1">
+      <div>
+        <h2><%= bookmark.movie.title %></h2>
+        <p><%= bookmark.movie.overview %></p>
+      </div>
+      <h2 class="card-trip-pricing"><%= bookmark.movie.rating %></h2>
+      <p><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
+    </div>
+    <div class='delete'>
+      <%= link_to bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-warning p-1' do %>
+            <i class="fa-solid fa-trash"></i> Delete
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="container text-center p-2" style='margin: 12px auto' >
+  <h3 >CREATE NEW BOOKMARK</h3>
+  <br>
+  <%= simple_form_for([@list, @bookmark]) do |f| %>
+    <%= f.association :movie, input_html: { class: 'select2' } %>
+    <%= f.input :comment %>
+    <%= f.submit 'Submit', class: "btn btn-outline-dark" %>
+  <% end %>
+</div>

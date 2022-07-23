@@ -1,0 +1,15 @@
+<div class="banner mb-5" style="background-image: url('/assets/images/cinema2.jpg') height: 300px;">
+  <div class="container">
+    <h1 class='text-center'>My Lists</h1>
+  </div>
+</div>
+
+<div class="cards text-center">
+  <% @lists.each do |list| %>
+    <div class="card-category p-4">
+      <%= link_to list_path(list) do %>
+        <h4><%= list.name %></h4>
+      <% end %>
+    </div>
+  <% end %>
+</div>
