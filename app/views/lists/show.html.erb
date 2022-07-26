@@ -6,26 +6,76 @@
 
 
 
-<div class="cards">
-  <% @list.bookmarks.each do |bookmark| %>
-  <div class="card-trip m-2", style='width: 400px;'>
-    <%= image_tag "#{bookmark.movie.poster_url}",width: 400, height: 200 %>
-    <div class="card-trip-infos p-1">
-      <div>
-        <h2><%= bookmark.movie.title %></h2>
-        <p><%= bookmark.movie.overview %></p>
-      </div>
-      <h2 class="card-trip-pricing"><%= bookmark.movie.rating %></h2>
-      <p><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
-    </div>
-    <div class='delete'>
-      <%= link_to bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-warning p-1' do %>
-            <i class="fa-solid fa-trash"></i> Delete
-      <% end %>
-    </div>
+
+  <div class='container'>
+    <% @list.bookmarks.each do |bookmark| %>
+        <div class="card-product mt-4">
+          <%= image_tag "#{bookmark.movie.poster_url}" %>
+          <div class="card-trip-infos p-1">
+            <div>
+              <div class="d-flex">
+                  <p><b><%= bookmark.movie.title %> </b> <i class="fa-regular fa-pipe"></i></p>
+                  <p class="card-trip-pricing"><%= bookmark.movie.rating %>  <i class="fa-solid fa-star" style="color: rgb(255,222,0);" ></i></p>
+              </div>
+              <p class="paragraph"><%= bookmark.movie.overview %></p>
+            </div>
+            <p><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
+          </div>
+          <div>
+            <%= link_to bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-warning p-1 delete' do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+       </div>
+    <% end %>
   </div>
-  <% end %>
+
+
+<hr>
+
+<div class="d-flex justify-content-between ">
+  <div class="container">
+    <h3>Reviews</h3>
+    <ul class="list-group list-group-flush">
+      <% @list.reviews.each do |review| %>
+      <li class="list-group-item">
+      <p>
+      <% review.rating.times do %>
+      <i class="fa-solid fa-star" style="color: rgb(255,222,0);" ></i>
+      <% end %>
+        <span>
+          <% if ((Time.now - review.created_at) / 3600).to_i > 24 %>
+            post <%= "#{((Time.now - review.created_at) / 86400).to_i}" %> day ago
+          <% elsif ((Time.now - review.created_at) / 60).to_i > 60 %>
+            post <%= "#{((Time.now - review.created_at) / 3600).to_i}" %> hour ago
+          <% else %>
+            post <%= "#{((Time.now - review.created_at) / 60).to_i}" %> minute ago
+          <% end %>
+        </span>
+      </p>
+      <p><%= review.comment %></p>
+      </li>
+
+      <% end %>
+
+    </ul>
+
+  </div>
+
+
+  <div class="container p-2" >
+    <h3 >CREATE NEW REVIEW</h3>
+    <br>
+    <%= simple_form_for([@list, @review]) do |f| %>
+      <%= f.input :comment %>
+      <%= f.input :rating, collection: Review::MARK, input_html: { class: 'select2' } %>
+      <%= f.submit 'Submit', class: "btn btn-outline-dark" %>
+    <% end %>
+  </div>
+
 </div>
+
+<hr>
 
 <div class="container text-center p-2" style='margin: 12px auto' >
   <h3 >CREATE NEW BOOKMARK</h3>
