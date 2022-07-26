@@ -6,7 +6,7 @@
 </div>
 
 
-<div class="cards text-center" >
+<div class="cards text-center m-4" >
   <% @lists.each do |list| %>
     <% if list.photo.attached? %>
       <div class="card-category p-4" style="background-image: url('<%= cl_image_path list.photo.key, height: 300, crop: :fill  %>')">
