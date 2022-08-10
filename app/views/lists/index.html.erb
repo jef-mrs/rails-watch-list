@@ -6,20 +6,25 @@
 </div>
 
 
-<div class="cards text-center m-4" >
+<div class="cards m-4" >
   <% @lists.each do |list| %>
     <% if list.photos.count > 0 %>
       <% photo = list.photos.first %>
-      <div class="card-category p-4" style="background-image: url('<%= cl_image_path photo.key, width: 300, crop: :fill  %>'); background-size: cover;">
-        <%= link_to list_path(list) do %>
-          <h4 style=""><%= list.name %></h4>
+      <div class="card-category" style="background-image: url('<%= cl_image_path photo.key, width: 300, crop: :fill  %>'); background-size: cover;">
+        <%= link_to list_path(list), class: "list-link" do %>
+          <h4 style="font-weight: bolder; font-size: 40px"><%= list.name.upcase %></h4>
+        <% end %>
+        <%= link_to list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "list-link pos" do %>
+              <i class="fa-solid fa-trash"></i>
         <% end %>
       </div>
     <% else %>
       <div class="card-category p-4">
-        <%= link_to list_path(list) do %>
-        *
-          <h4><%= list.name %></h4>
+        <%= link_to list_path(list), class: "list-link" do %>
+          <h4><%= list.name.upcase %></h4>
+        <% end %>
+        <%= link_to list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "list-link pos" do %>
+              <i class="fa-solid fa-trash"></i>
         <% end %>
       </div>
     <% end %>

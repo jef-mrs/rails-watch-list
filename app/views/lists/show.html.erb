@@ -1,6 +1,6 @@
-<div class="banner mb-5" style=" height: 300px;">
+<div class="banner mb-5" style=" height: 300px; background-image: url('<%= cl_image_path @list.photos.first.key, width: 300, crop: :fill  %>'); background-size: cover;">
   <div class="container">
-    <h1 class='text-center'><%= @list.name %></h1>
+    <h1 class='text-center' style="font-size: 80px;"><%= @list.name.upcase %></h1>
   </div>
 </div>
 
@@ -9,29 +9,25 @@
 
   <div class='container'>
     <% @list.bookmarks.each do |bookmark| %>
-        <div class="card-product mt-4">
+        <div class="card-product mt-4 pe-2">
           <%= image_tag "#{bookmark.movie.poster_url}" %>
-          <div class="card-trip-infos p-1">
-            <div>
+            <div class="overflow-auto ms-2 me-2" style="height: 100%; width: 100%">
               <div class="d-flex">
-                  <p><b><%= bookmark.movie.title %> </b> <i class="fa-regular fa-pipe"></i></p>
+                  <p ><b><%= bookmark.movie.title %> </b> <i class="fa-regular fa-pipe"></i></p>
                   <p class="card-trip-pricing"><%= bookmark.movie.rating %>  <i class="fa-solid fa-star" style="color: rgb(255,222,0);" ></i></p>
               </div>
-              <p class="paragraph"><%= bookmark.movie.overview %></p>
+              <p ><%= bookmark.movie.overview %></p>
+              <p class="text-center"><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
             </div>
-            <p><i class="fa-solid fa-quote-left"></i> <%= bookmark.comment %></p>
-          </div>
-          <div>
             <%= link_to bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-outline-warning p-1 delete' do %>
               <i class="fa-solid fa-trash"></i>
             <% end %>
-          </div>
        </div>
     <% end %>
   </div>
 
 
-<hr>
+<hr class="m-4">
 
 <div class="d-flex justify-content-between ">
   <div class="container">
@@ -68,20 +64,20 @@
     <br>
     <%= simple_form_for([@list, @review]) do |f| %>
       <%= f.input :comment %>
-      <%= f.input :rating, collection: Review::MARK, input_html: { class: 'select2' } %>
+      <%= f.input :rating, collection: Review::MARK, input_html: { class: 'select2'} %>
       <%= f.submit 'Submit', class: "btn btn-outline-dark" %>
     <% end %>
   </div>
 
 </div>
 
-<hr>
+<hr class="m-4">
 
 <div class="container text-center p-2" style='margin: 12px auto' >
   <h3 >CREATE NEW BOOKMARK</h3>
   <br>
   <%= simple_form_for([@list, @bookmark]) do |f| %>
-    <%= f.association :movie, input_html: { class: 'select2' } %>
+    <%= f.association :movie, input_html: { class: 'select2'} %>
     <%= f.input :comment %>
     <%= f.submit 'Submit', class: "btn btn-outline-dark" %>
   <% end %>

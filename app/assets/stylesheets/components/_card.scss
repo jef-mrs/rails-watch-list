@@ -1,37 +1,36 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 8px;
-  height: 400px;
+  grid-gap: 16px;
 }
 
 .card-category {
-  border: 1px solid black;
-  background-image: asset-url('cinema.jpg');
   background-size: cover;
   background-position: center;
-  height: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .card-product {
   overflow: hidden;
-  height: 5%;
+  height: 120px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-right: 8px;
-
-}
-
-.delete {
-  font-size: 12px;
-  border: none;
 }
 
 .card-product img {
   height: 100%;
+  width: 120px;
   object-fit: cover;
 }
 
@@ -39,10 +38,6 @@
   font-size: 16px;
   font-weight: bold;
   margin: 0;
-
-  .paragraph {
-    font-size: 12px;
-  }
 }
 
 .card-product p {
@@ -56,17 +51,11 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
-.card-trip {
-background-color: white;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: end;
-  .paragraph {
-    font-size: 12px;
-  }
-}
+
+
+
+
+
 
 
 // Smallest device
