@@ -11,19 +11,23 @@
     <% if list.photos.count > 0 %>
       <% photo = list.photos.first %>
       <div class="card-category" style="background-image: url('<%= cl_image_path photo.key, width: 300, crop: :fill  %>'); background-size: cover;">
-        <%= link_to list_path(list), class: "list-link" do %>
-          <h4 style="font-weight: bolder; font-size: 40px"><%= list.name.upcase %></h4>
-        <% end %>
-        <%= link_to list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "list-link pos" do %>
+        <div class="d-bloc">
+          <%= link_to list_path(list), class: "list-link" do %>
+            <h4 style="font-weight: bolder; font-size: 40px"><%= list.name.upcase %></h4>
+          <% end %>
+          <p class="text-center">
+            <%= link_to list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "list-link pos 'text-end'" do %>
               <i class="fa-solid fa-trash"></i>
-        <% end %>
+            <% end %>
+          </p>
+        </div>
       </div>
     <% else %>
       <div class="card-category p-4">
         <%= link_to list_path(list), class: "list-link" do %>
           <h4><%= list.name.upcase %></h4>
         <% end %>
-        <%= link_to list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "list-link pos" do %>
+        <%= link_to list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "list-link pos text-end" do %>
               <i class="fa-solid fa-trash"></i>
         <% end %>
       </div>
